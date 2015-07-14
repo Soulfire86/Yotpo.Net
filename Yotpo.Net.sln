@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yotpo.Net", "src\Yotpo.Net.csproj", "{1017BEC7-77BB-4DCE-A76B-AD279B39CD9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YotpoAPI.Tests", "YotpoAPI.Tests\YotpoAPI.Tests.csproj", "{AAD3C63A-0520-42D0-B1B6-AD637FF2B617}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1017BEC7-77BB-4DCE-A76B-AD279B39CD9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1017BEC7-77BB-4DCE-A76B-AD279B39CD9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1017BEC7-77BB-4DCE-A76B-AD279B39CD9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1017BEC7-77BB-4DCE-A76B-AD279B39CD9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAD3C63A-0520-42D0-B1B6-AD637FF2B617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAD3C63A-0520-42D0-B1B6-AD637FF2B617}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAD3C63A-0520-42D0-B1B6-AD637FF2B617}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAD3C63A-0520-42D0-B1B6-AD637FF2B617}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
