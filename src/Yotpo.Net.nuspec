@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Yotpo.Net</id>
+    <id>$id$</id>
     <version>$version$</version>
     <title>$title$</title>
     <authors>$author$</authors>
@@ -13,13 +13,10 @@
     <description>$description$</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
     <copyright>Copyright 2015</copyright>
-    <tags>yotpo reviews</tags>
+    <tags>social reviews yotpo</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="7.0.1" />
-      <dependency id="RestSharp>" version="105.1.0" />
+      <dependency id="RestSharp" version="105.1.0" />
     </dependencies>
   </metadata>
-  <files>
-    <file src="bin\$configuration$\Yotpo.Net.dll" />
-  </files>
 </package>
