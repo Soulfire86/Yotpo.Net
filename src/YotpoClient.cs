@@ -90,6 +90,11 @@ namespace YotpoNet
 
         // ORDERS
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
         public int CreateOrder(NewOrder order)
         {
             var request = new RestRequest("apps/{app_key}/purchases", Method.POST) { RequestFormat = DataFormat.Json };
@@ -106,6 +111,27 @@ namespace YotpoNet
                 JToken responseContent = JObject.Parse(resp.Content);
 
                 var statusCode = (int) responseContent.SelectToken("code");
+
+                return statusCode;
+            }
+
+            return 0;
+        }
+
+        public int DeleteOrders(OrdersToDelete ordersToDelete)
+        {
+            var request = new RestRequest("apps/{app_key}/purchases", Method.DELETE) { RequestFormat = DataFormat.Json };
+            request.AddUrlSegment("app_key", _clientId);
+
+            var serializedOrders = JsonConvert.SerializeObject(ordersToDelete);
+
+            request.AddParameter("application/json", serializedOrders, ParameterType.RequestBody);
+
+            var response = Execute(request) as RestResponse;
+
+            if (response != null)
+            {
+                var statusCode = (int) JObject.Parse(response.Content).SelectToken("code");
 
                 return statusCode;
             }

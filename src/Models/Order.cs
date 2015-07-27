@@ -37,4 +37,17 @@ namespace YotpoNet.Models
         public DateTime created_at { get; set; }
     }
 
+    public class OrdersToDelete
+    {
+        public String utoken { get; set; }
+        public OrderToDelete[] orders { get; set; }
+    }
+
+    public class OrderToDelete
+    {
+        public String order_id { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public String[] skus { get; set; }
+    }
+
 }
