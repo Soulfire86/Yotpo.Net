@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
@@ -23,7 +24,7 @@ namespace YotpoNet
 
         public T Execute<T>(RestRequest request) where T : new()
         {
-            var client = new RestClient(BaseURL) {Authenticator = new HttpBasicAuthenticator(_clientId, _clientSecret)};
+            var client = new RestClient(BaseURL) {Authenticator = new RestSharp.Authenticators.HttpBasicAuthenticator(_clientId, _clientSecret)};
             var response = client.Execute<T>(request);
 
             if (response.ErrorException == null)
@@ -34,9 +35,9 @@ namespace YotpoNet
             throw yotpoException;
         }
 
-        public IRestResponse Execute(IRestRequest request)
+        public new IRestResponse Execute(IRestRequest request)
         {
-            var client = new RestClient(BaseURL) {Authenticator = new HttpBasicAuthenticator(_clientId, _clientSecret)};
+            var client = new RestClient(BaseURL) {Authenticator = new RestSharp.Authenticators.HttpBasicAuthenticator(_clientId, _clientSecret)};
             var response = client.Execute(request);
             if(response.ErrorException == null)
                 return response;
@@ -139,7 +140,7 @@ namespace YotpoNet
             return 0;
         }
 
-        public int GetOrders(String utoken, String page = "1", String count = "10", String since_id = null)
+        public int GetOrders(String utoken, String page = "1", String count = "200", String since_id = null)
         {
             var request = new RestRequest("apps/{app_key}/purchases", Method.GET) { RequestFormat = DataFormat.Json };
             request.AddUrlSegment("app_key", _clientId);
@@ -171,7 +172,7 @@ namespace YotpoNet
         /// <returns>Returns response status code.</returns>
         public int SendTestEmail(String utoken, String email = null)
         {
-            var request = new RestRequest("apps/{app_key}/reminders/send_test_email", Method.POST) { RequestFormat = DataFormat.Json};
+            var request = new RestRequest("apps/{app_key}/reminders/send_test_email", Method.POST) { RequestFormat = DataFormat.Json };
             request.AddUrlSegment("app_key", _clientId);
 
             var json = "{\"utoken\": \"" + utoken + "\"";
@@ -193,5 +194,35 @@ namespace YotpoNet
             return 0;
         }
 
+
+        // REVIEWS
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="productID"></param>
+        /// <returns></returns>
+        public BottomLine GetBottomLine(String productID)
+        {
+            var request = new RestRequest("products/{app_key}/{product_id}/bottomline", Method.GET) { RequestFormat = DataFormat.Json };
+            request.AddUrlSegment("app_key", _clientId);
+            request.AddUrlSegment("product_id", productID);
+
+            var response = Execute(request) as RestResponse;
+
+            if (response != null)
+            {
+                JToken content = JObject.Parse(response.Content);
+
+                var statusCode = (int) content.SelectToken("status.code");
+
+                var bottomLine = content["response"]["bottomline"].ToObject<BottomLine>();
+
+                if (statusCode == 200)
+                    return bottomLine;
+            }
+
+            return null;
+        }
     }
 }
