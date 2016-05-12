@@ -205,5 +205,5 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 
-# Ignore Unit Tests project for now
-YotpoAPI.Tests/
+# Client Secrets
+ClientCredentials.json
