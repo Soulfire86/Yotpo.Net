@@ -5,3 +5,6 @@ Ther is much to do on this library. It does the bare minimum of Getting Authenti
 
 ## Usage
 TODO
+
+### Client Secrets
+Update src/lib/ClientCredentials.json with your client key and secret.
