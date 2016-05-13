@@ -9,7 +9,7 @@ namespace YotpoNet.Internal
     {
         public override bool CanConvert(Type objectType)
         {
-            return true; //WTF, I dunno...guess this would be true for the one case I wanna use it.
+            return true;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -32,7 +32,7 @@ namespace YotpoNet.Internal
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
             JsonSerializer serializer)
         {
-            throw new NotImplementedException("Don't need this shit! Didn't implement it.");
+            throw new NotImplementedException();
         }
     }
 }
