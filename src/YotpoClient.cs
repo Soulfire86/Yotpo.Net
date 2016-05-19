@@ -215,11 +215,10 @@ namespace YotpoNet
                 JToken content = JObject.Parse(response.Content);
 
                 var statusCode = (int) content.SelectToken("status.code");
-
+                if (statusCode != 200) return null;
                 var bottomLine = content["response"]["bottomline"].ToObject<BottomLine>();
 
-                if (statusCode == 200)
-                    return bottomLine;
+                return bottomLine;
             }
 
             return null;
