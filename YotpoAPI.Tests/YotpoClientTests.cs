@@ -128,6 +128,10 @@ namespace YotpoAPI.Tests
             var bottomLine = _client.GetBottomLine("1003");
 
             Assert.IsTrue(bottomLine.total_reviews > 0);
+
+            bottomLine = _client.GetBottomLine("9030");
+
+            Assert.IsTrue(bottomLine.total_reviews == 0);
         }
 
     }
