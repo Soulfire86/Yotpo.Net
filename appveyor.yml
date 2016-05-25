@@ -1,3 +1,6 @@
+# version format
+version: 0.1.0.{build}
+
 # environment variables
 environment:
   YOTPO_API_KEY:
@@ -6,9 +9,6 @@ environment:
     secure: iUXMftBIRRzPgeX8kg1Aw94cM8b/6+DNOwG6BWdSaH9NQDD/4Itg7dEUqvpDZ+Er
   TEST_EMAIL:
     secure: r+AbRpIwEldTC0LIevfQMOFuwUZ576k7WcM78751NCE=
-
-# version format
-version: 0.1.0.{build}
 
 # enable patching of AssemblyInfo.* files
 assembly_info:
@@ -31,3 +31,11 @@ build:
   project: Yotpo.Net.sln
   publish_nuget: true             # package projects with .nuspec files and push to artifacts
   verbosity: minimal               # MSBuild Verbosity level
+
+# deployment
+deploy:
+  provider: NuGet
+  api_key:
+    secure: euh1/mFbhtk7s9fKjYxCGxSBJEwXKsrUvwJ2gn6dQcbTR9QiKQaFvhzrMqiUrpwr
+  skip_symbols: false
+  artifact: /.*\.nupkg/
