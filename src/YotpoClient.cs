@@ -204,6 +204,7 @@ namespace YotpoNet
         /// <returns></returns>
         public BottomLine GetBottomLine(String productID)
         {
+            var bottomLine = new BottomLine {average_score = 0, total_reviews = 0};
             var request = new RestRequest("products/{app_key}/{product_id}/bottomline", Method.GET) { RequestFormat = DataFormat.Json };
             request.AddUrlSegment("app_key", _clientId);
             request.AddUrlSegment("product_id", productID);
@@ -215,14 +216,11 @@ namespace YotpoNet
                 JToken content = JObject.Parse(response.Content);
 
                 var statusCode = (int) content.SelectToken("status.code");
-
-                var bottomLine = content["response"]["bottomline"].ToObject<BottomLine>();
-
                 if (statusCode == 200)
-                    return bottomLine;
+                    bottomLine = content["response"]["bottomline"].ToObject<BottomLine>();
             }
 
-            return null;
+            return bottomLine;
         }
     }
 }

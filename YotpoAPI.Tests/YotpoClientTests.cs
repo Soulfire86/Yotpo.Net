@@ -130,6 +130,10 @@ namespace YotpoAPI.Tests
             Console.WriteLine($"Score: {bottomLine.average_score} with {bottomLine.total_reviews} reviews.");
 
             Assert.IsTrue(bottomLine.total_reviews > 0);
+
+            bottomLine = _client.GetBottomLine("9030");
+
+            Assert.IsTrue(bottomLine.total_reviews == 0);
         }
 
     }
