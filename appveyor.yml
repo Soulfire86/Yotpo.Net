@@ -1,3 +1,10 @@
+# environment variables
+environment:
+  client_id:
+    secure: 9BD/L7erIVKL9Hq7m1OhWPYJAM5lDks1KjUXQAnlPSp26nxkmIjs4/dD4AbPwu15
+  client_secret:
+    secure: iUXMftBIRRzPgeX8kg1Aw94cM8b/6+DNOwG6BWdSaH9NQDD/4Itg7dEUqvpDZ+Er
+
 # version format
 version: 0.1.0.{build}
 
