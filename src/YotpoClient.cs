@@ -188,7 +188,9 @@ namespace YotpoNet
             {
                 JToken content = JObject.Parse(response.Content);
 
-                return (int) content.SelectToken("code");
+                var statusCode = (int)content.SelectToken("status.code");
+
+                return statusCode;
             }
 
             return 0;
