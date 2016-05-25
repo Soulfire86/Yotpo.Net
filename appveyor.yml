@@ -4,6 +4,8 @@ environment:
     secure: 9BD/L7erIVKL9Hq7m1OhWPYJAM5lDks1KjUXQAnlPSp26nxkmIjs4/dD4AbPwu15
   YOTPO_API_SECRET:
     secure: iUXMftBIRRzPgeX8kg1Aw94cM8b/6+DNOwG6BWdSaH9NQDD/4Itg7dEUqvpDZ+Er
+  TEST_EMAIL:
+    secure: r+AbRpIwEldTC0LIevfQMOFuwUZ576k7WcM78751NCE=
 
 # version format
 version: 0.1.0.{build}
@@ -21,6 +23,7 @@ before_build:
   - ps: $creds = ConvertFrom-Json -InputObject (Gc .\src\lib\ClientCredentials.json -Raw)
   - ps: $creds.client_id = $env:YOTPO_API_KEY
   - ps: $creds.client_secret = $env:YOTPO_API_SECRET
+  - ps: $creds.email = $env:TEST_EMAIL
   - ps: $creds | ConvertTo-Json | Out-File ".\src\lib\ClientCredentials.json"
 
 # build configuration
