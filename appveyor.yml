@@ -1,8 +1,8 @@
 # environment variables
 environment:
-  client_id:
+  YOTPO_API_KEY:
     secure: 9BD/L7erIVKL9Hq7m1OhWPYJAM5lDks1KjUXQAnlPSp26nxkmIjs4/dD4AbPwu15
-  client_secret:
+  YOTPO_API_SECRET:
     secure: iUXMftBIRRzPgeX8kg1Aw94cM8b/6+DNOwG6BWdSaH9NQDD/4Itg7dEUqvpDZ+Er
 
 # version format
@@ -18,6 +18,10 @@ assembly_info:
 # scripts to run before build
 before_build:
   - nuget restore
+  - ps: $creds = ConvertFrom-Json -InputObject (Gc .\src\lib\ClientCredentials.json -Raw)
+  - ps: $creds.client_id = $env:YOTPO_API_KEY
+  - ps: $creds.client_secret = $env:YOTPO_API_SECRET
+  - ps: $creds | ConvertTo-Json | Out-File ".\src\lib\ClientCredentials.json"
 
 # build configuration
 build:
