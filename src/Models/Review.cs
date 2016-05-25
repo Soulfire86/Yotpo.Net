@@ -21,7 +21,7 @@ namespace YotpoNet.Models
         public string title { get; set; }
         public DateTime create_at { get; set; }
         public bool verified_buyer { get; set; }
-        public int source_review_id { get; set; }
+        public int? source_review_id { get; set; }
         public int product_id { get; set; }
         public ReviewUser user { get; set; }
     }

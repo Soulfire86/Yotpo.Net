@@ -134,5 +134,13 @@ namespace YotpoAPI.Tests
             Assert.IsTrue(bottomLine.total_reviews == 0);
         }
 
+        [TestMethod]
+        public void GetReviewsForProduct_ReviewsReturnedForKnownReviewedProduct()
+        {
+            var productReviews = _client.GetReviewsForProduct("1003");
+
+            Assert.IsTrue(productReviews.reviews.Length > 0);
+        }
+
     }
 }

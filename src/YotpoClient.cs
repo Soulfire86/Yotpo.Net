@@ -198,7 +198,7 @@ namespace YotpoNet
 
 
         // REVIEWS
-
+        #region Reviews
         /// <summary>
         /// 
         /// </summary>
@@ -224,5 +224,30 @@ namespace YotpoNet
 
             return bottomLine;
         }
+
+        public ProductReviews GetReviewsForProduct(string productID)
+        {
+            var request = new RestRequest("v1/widget/{app_key}/products/{product_id}/reviews.json", Method.GET) { RequestFormat = DataFormat.Json };
+            request.AddUrlSegment("app_key", _clientId);
+            request.AddUrlSegment("product_id", productID);
+
+            var response = Execute(request) as RestResponse;
+
+            if (response != null)
+            {
+                JToken content = JObject.Parse(response.Content);
+                var statusCode = (int)content.SelectToken("status.code");
+                if (statusCode == 200)
+                {
+                    var prodReviews = content["response"].ToObject<ProductReviews>();
+
+                    return prodReviews;
+                }
+            }
+
+            return new ProductReviews();
+        }
+
+        #endregion
     }
 }
