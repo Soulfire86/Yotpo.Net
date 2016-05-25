@@ -12,24 +12,23 @@ namespace YotpoAPI.Tests
     public class YotpoClientTests
     {
 
-        private readonly YotpoClient _client = GetYotpoClient();
+        private readonly YotpoClient _client;
+        private readonly string _email;
 
-        private static YotpoClient GetYotpoClient()
+        private string _uToken;
+
+        public YotpoClientTests()
         {
-            string clientId;
-            string clientSecret;
-
             using (var s = new StreamReader(@"..\..\..\src\lib\ClientCredentials.json"))
             {
                 var json = s.ReadToEnd();
-                var secrets = JsonConvert.DeserializeObject<Dictionary<string,string>>(json);
-                clientId = secrets["client_id"];
-                clientSecret = secrets["client_secret"];
+                var creds = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+                var clientId = creds["client_id"];
+                var clientSecret = creds["client_secret"];
+                _email = creds["email"];
+                _client = new YotpoClient(clientId, clientSecret);
             }
-           return new YotpoClient(clientId, clientSecret);
         }
-
-        private String _uToken;
 
         [TestMethod]
         public void OAuthTokenReponseNotNull()
@@ -102,8 +101,7 @@ namespace YotpoAPI.Tests
         [TestMethod]
         public void Send_Test_Email_Is_Successful()
         {
-            var responseCode = _client.SendTestEmail(_client.RequestOAuthToken().AccessToken,
-                "webmaster@example.com");
+            var responseCode = _client.SendTestEmail(_client.RequestOAuthToken().AccessToken, _email);
 
             Assert.AreEqual(200, responseCode);
         }
