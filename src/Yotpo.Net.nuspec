@@ -2,16 +2,16 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>1.0.0.1</version>
+    <version>$version$</version>
     <title>$title$</title>
-    <authors>Soulfire86</authors>
-    <owners>Soulfire86</owners>
+    <authors>Soulfire86,eidolonic</authors>
+    <owners>Soulfire86,eidolonic</owners>
     <licenseUrl>https://github.com/Soulfire86/Yotpo.Net/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>https://github.com/Soulfire86/Yotpo.Net</projectUrl>
     <iconUrl>https://avatars2.githubusercontent.com/u/792660</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.Net client library for Yotpo Reviews Platform API</description>
-    <copyright>Copyright 2015</copyright>
+    <copyright>Copyright 2016</copyright>
     <tags>social reviews yotpo</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="7.0.1" />
