@@ -140,7 +140,7 @@ namespace YotpoNet
             return 0;
         }
 
-        public int GetOrders(String utoken, String page = "1", String count = "200", String since_id = null)
+        public int GetOrders(string utoken, string page = "1", string count = "200", string since_id = null)
         {
             var request = new RestRequest("apps/{app_key}/purchases", Method.GET) { RequestFormat = DataFormat.Json };
             request.AddUrlSegment("app_key", _clientId);
@@ -170,13 +170,13 @@ namespace YotpoNet
         /// <param name="utoken">Valid Yotpo User Access Token</param>
         /// <param name="email">Optional email address</param>
         /// <returns>Returns response status code.</returns>
-        public int SendTestEmail(String utoken, String email = null)
+        public int SendTestEmail(string utoken, string email = null)
         {
             var request = new RestRequest("apps/{app_key}/reminders/send_test_email", Method.POST) { RequestFormat = DataFormat.Json };
             request.AddUrlSegment("app_key", _clientId);
 
             var json = "{\"utoken\": \"" + utoken + "\"";
-            if (!String.IsNullOrEmpty(email))
+            if (!string.IsNullOrEmpty(email))
                 json += ", \"email\": \"" + email + "\"";
             json += "}";
 
@@ -202,7 +202,7 @@ namespace YotpoNet
         /// </summary>
         /// <param name="productID"></param>
         /// <returns></returns>
-        public BottomLine GetBottomLine(String productID)
+        public BottomLine GetBottomLine(string productID)
         {
             var bottomLine = new BottomLine {average_score = 0, total_reviews = 0};
             var request = new RestRequest("products/{app_key}/{product_id}/bottomline", Method.GET) { RequestFormat = DataFormat.Json };
