@@ -1,4 +1,8 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+
+// ReSharper disable InconsistentNaming
 
 namespace YotpoNet.Models
 {
@@ -36,6 +40,7 @@ namespace YotpoNet.Models
     public class BottomLine
     {
         public string domain_key { get; set; }
+        [JsonProperty(PropertyName = "total_review")]
         public int total_reviews { get; set; }
         public double average_score { get; set; }
     }

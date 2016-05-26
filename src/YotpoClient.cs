@@ -230,22 +230,18 @@ namespace YotpoNet
             var request = new RestRequest("v1/widget/{app_key}/products/{product_id}/reviews.json", Method.GET) { RequestFormat = DataFormat.Json };
             request.AddUrlSegment("app_key", _clientId);
             request.AddUrlSegment("product_id", productID);
+            request.AddQueryParameter("per_page", "50");
 
             var response = Execute(request) as RestResponse;
 
-            if (response != null)
-            {
-                JToken content = JObject.Parse(response.Content);
-                var statusCode = (int)content.SelectToken("status.code");
-                if (statusCode == 200)
-                {
-                    var prodReviews = content["response"].ToObject<ProductReviews>();
+            if (response == null) return new ProductReviews();
 
-                    return prodReviews;
-                }
-            }
+            JToken content = JObject.Parse(response.Content);
 
-            return new ProductReviews();
+            if ((int)content.SelectToken("status.code") != 200) return new ProductReviews();
+            var prodReviews = content["response"].ToObject<ProductReviews>();
+
+            return prodReviews;
         }
 
         #endregion
