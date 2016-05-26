@@ -225,11 +225,13 @@ namespace YotpoNet
             return bottomLine;
         }
 
-        public ProductReviews GetReviewsForProduct(string productID)
+        public ProductReviews GetReviewsForProduct(string productID, int pageNum=1, int resultsPerPage=5)
         {
             var request = new RestRequest("v1/widget/{app_key}/products/{product_id}/reviews.json", Method.GET) { RequestFormat = DataFormat.Json };
             request.AddUrlSegment("app_key", _clientId);
             request.AddUrlSegment("product_id", productID);
+            request.AddQueryParameter("page", pageNum.ToString());
+            request.AddQueryParameter("per_page", resultsPerPage.ToString());
 
             var response = Execute(request) as RestResponse;
 
