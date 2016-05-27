@@ -9,7 +9,7 @@ namespace YotpoNet.Models
     public class ProductReviews
     {
         public Pagination pagination { get; set; }
-        public BottomLine bottomline { get; set; }
+        public ReviewsBottomLine bottomline { get; set; }
         public object[] products { get; set; } //Why is this even returned?
         public object[] product_tags { get; set; }
         public Review[] reviews { get; set; }
@@ -40,9 +40,32 @@ namespace YotpoNet.Models
     public class BottomLine
     {
         public string domain_key { get; set; }
-        [JsonProperty(PropertyName = "total_review")]
         public int total_reviews { get; set; }
         public double average_score { get; set; }
+
+    }
+
+    //Only needed to support incongruous naming (a.k.a. typo) by YOTPO
+    public class ReviewsBottomLine
+    {
+        public string domain_key { get; set; }
+        public int total_review { get; set; }
+        public double average_score { get; set; }
+        public StarDistribution star_distribution { get; set; }
+    }
+
+    public class StarDistribution
+    {
+        [JsonProperty("1")]
+        public int OneStar { get; set; }
+        [JsonProperty("2")]
+        public int TwoStars { get; set; }
+        [JsonProperty("3")]
+        public int ThreeStars { get; set; }
+        [JsonProperty("4")]
+        public int FourStars { get; set; }
+        [JsonProperty("5")]
+        public int FiveStars { get; set; }
     }
 
 }
