@@ -140,7 +140,14 @@ namespace YotpoAPI.Tests
         {
             var productReviews = _client.GetReviewsForProduct("1003");
 
+            //Known reviewed product should have reviews returned
             Assert.IsTrue(productReviews.reviews.Length > 0);
+            Assert.IsTrue(productReviews.pagination.total > 0);
+
+            productReviews = _client.GetReviewsForProduct("XXXX");
+
+            //Unreviewed product (or bogus data) should return Pagination total of 0
+            Assert.IsTrue(productReviews.pagination.total == 0);
         }
 
     }
